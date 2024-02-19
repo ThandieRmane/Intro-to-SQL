@@ -11,7 +11,8 @@
 
 ``` SQL
 Select *
-FROM employees;```
+FROM employees;
+```
 
 #### 2. Retrieve the FirstName, LastName, Birthdate, Address, City, and State from the Employees table.
 
