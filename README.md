@@ -9,8 +9,8 @@
 
 Retrieve all the records from the Employees table.
 
-'''Select *
-FROM employees;'''
+```Select *
+FROM employees;```
 
 Retrieve the FirstName, LastName, Birthdate, Address, City, and State from the Employees table.
 
