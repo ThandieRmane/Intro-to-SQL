@@ -28,6 +28,14 @@ SELECT Firstname, Lastname, Birthdate, Address, City, State
 FROM Employees;
 ```
 
+| FirstName | LastName | BirthDate           | Address                     | City       | State |
+|-----------|----------|---------------------|-----------------------------|------------|-------|
+| Andrew    | Adams    | 1962-02-18 00:00:00 | 11120 Jasper Ave NW         | Edmonton   | AB    |
+| Nancy     | Edwards  | 1958-12-08 00:00:00 | 825 8 Ave SW                | Calgary    | AB    |
+| Jane      | Peacock  | 1973-08-29 00:00:00 | 1111 6 Ave SW               | Calgary    | AB    |
+| Margaret  | Park     | 1947-09-19 00:00:00 | 683 10 Street SW            | Calgary    | AB    |
+| Steve     | Johnson  | 1965-03-03 00:00:00 | 7727B 41 Ave                | Calgary    | AB    |
+
 #### 3. Retrieve all the columns from the Tracks table, but only return 20 rows.
 
 ``` SQL
@@ -35,6 +43,14 @@ SELECT *
 FROM tracks
 LIMIT 20;
 ```
+
+| TrackId | Name                                    | AlbumId | MediaTypeId | GenreId | Composer                                                               | Milliseconds | Bytes    | UnitPrice |
+|---------|-----------------------------------------|---------|-------------|---------|------------------------------------------------------------------------|--------------|----------|-----------|
+| 1       | For Those About To Rock (We Salute You) | 1       | 1           | 1       | Angus Young, Malcolm Young, Brian Johnson                              | 343719       | 11170334 | 0.99      |
+| 2       | Balls to the Wall                       | 2       | 2           | 1       | None                                                                   | 342562       | 5510424  | 0.99      |
+| 3       | Fast As a Shark                         | 3       | 2           | 1       | F. Baltes, S. Kaufman, U. Dirkscneider & W. Hoffman                    | 230619       | 3990994  | 0.99      |
+| 4       | Restless and Wild                       | 3       | 2           | 1       | F. Baltes, R.A. Smith-Diesel, S. Kaufman, U. Dirkscneider & W. Hoffman | 252051       | 4331779  | 0.99      |
+| 5       | Princess of the Dawn                    | 3       | 2           | 1       | Deaffy & R.A. Smith-Diesel                                             | 375418       | 6290521  | 0.99      |
 
 ## Part 2: Filtering, Sorting and Calculating Data with SQL
 
