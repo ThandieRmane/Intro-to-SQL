@@ -13,7 +13,7 @@
 Select *
 FROM employees;
 ```
-Note: table includes only the first 5 records have been displayed. 
+Note: only the first 5 records have been displayed. 
 
 | EmployeeId | LastName | FirstName | Title               | ReportsTo | BirthDate           | HireDate            | Address                     | City       | State | Country | PostalCode | Phone             | Fax               | Email                    |
 |------------|----------|-----------|---------------------|-----------|---------------------|---------------------|-----------------------------|------------|-------|---------|------------|-------------------|-------------------|--------------------------|
@@ -226,7 +226,7 @@ from tracks
 group by albumid
 having count (trackid) >= 12;
 ```
-Note: only the first 10 records have been displayed. There were over 158 records returned. 
+Note: only the first 10 records have been displayed. There were 158 records returned. 
 
 | TrackId | Name                         | AlbumId | MediaTypeId | GenreId | Composer                          | Milliseconds |    Bytes | UnitPrice | totaltracks |
 |---------|------------------------------|---------|-------------|---------|----------------------------------|--------------|----------|-----------|-------------|
@@ -329,6 +329,29 @@ UPPER(city || ' ' || country) as Location
 
 from customers;
 ```
+Note: only the first 16 records have been displayed. 
+
+markdown
+
+| CustomerId | FullName             | Location                  |
+|------------|----------------------|---------------------------|
+| 1          | Luís Gonçalves       | SãO JOSé DOS CAMPOS BRAZIL |
+| 2          | Leonie Köhler        | STUTTGART GERMANY         |
+| 3          | François Tremblay    | MONTRéAL CANADA           |
+| 4          | Bjørn Hansen         | OSLO NORWAY               |
+| 5          | František Wichterlová| PRAGUE CZECH REPUBLIC     |
+| 6          | Helena Holý          | PRAGUE CZECH REPUBLIC     |
+| 7          | Astrid Gruber        | VIENNE AUSTRIA            |
+| 8          | Daan Peeters         | BRUSSELS BELGIUM          |
+| 9          | Kara Nielsen         | COPENHAGEN DENMARK        |
+| 10         | Eduardo Martins      | SãO PAULO BRAZIL          |
+| 11         | Alexandre Rocha      | SãO PAULO BRAZIL          |
+| 12         | Roberto Almeida      | RIO DE JANEIRO BRAZIL     |
+| 13         | Fernanda Ramos       | BRASíLIA BRAZIL           |
+| 14         | Mark Philips         | EDMONTON CANADA           |
+| 15         | Jennifer Peterson    | VANCOUVER CANADA          |
+| 16         | Frank Harris         | MOUNTAIN VIEW USA         |
+
 
 #### 2. Create a new employee user id by combining the first 4 letters of the employee’s first name with the first 2 letters of the employee’s last name. Make the new field lower case and pull each individual step to show your work.
 
@@ -338,7 +361,18 @@ lower(substr(firstname, 1,4) || substr(lastname,1,2)) as userid
 from employees;
 ```
 
-#### 3. Show a list of employees who have worked for the company for 15 or more years using the current date function. Sort by lastname ascending.
+| EmployeeId | Fullname          | UserId |
+|------------|-------------------|--------|
+| 1          | Andrew Adams      | andrad |
+| 2          | Nancy Edwards     | nanced |
+| 3          | Jane Peacock      | janepe |
+| 4          | Margaret Park     | margpa |
+| 5          | Steve Johnson     | stevjo |
+| 6          | Michael Mitchell  | michmi |
+| 7          | Robert King       | robeki |
+| 8          | Laura Callahan    | laurca |
+
+#### 3. Show a list of employees who have worked for the company for 15 or more years using the date function. Sort by lastname ascending.
 
 ```SQL
 SELECT
@@ -353,12 +387,30 @@ ORDER BY
     lastname;
 ```
 
+| EmployeeId | FirstName | LastName | Years_diff |
+|------------|-----------|----------|------------|
+| 1          | Andrew    | Adams    | 21.51      |
+| 8          | Laura     | Callahan | 19.95      |
+| 2          | Nancy     | Edwards  | 21.80      |
+| 5          | Steve     | Johnson  | 20.33      |
+| 7          | Robert    | King     | 20.12      |
+| 6          | Michael   | Mitchell | 20.33      |
+| 4          | Margaret  | Park     | 20.79      |
+| 3          | Jane      | Peacock  | 21.88      |
+
 #### 4. Profiling the Customers table, answer the following question. Are there any columns with null values?
 
 ``` SQL
 select * from customers
 where postalcode is null;
 ```
+
+| CustomerId | FirstName | LastName  | Company | Address                                  | City     | State  | Country  | PostalCode | Phone              | Fax  | Email                | SupportRepId |
+|------------|-----------|-----------|---------|------------------------------------------|----------|--------|----------|------------|--------------------|------|----------------------|--------------|
+| 34         | João      | Fernandes | None    | Rua da Assunção 53                       | Lisbon   | None   | Portugal | None       | +351 (213) 466-111 | None | jfernandes@yahoo.pt  | 4            |
+| 35         | Madalena  | Sampaio   | None    | Rua dos Campeões Europeus de Viena, 4350 | Porto    | None   | Portugal | None       | +351 (225) 022-448 | None | masampaio@sapo.pt    | 4            |
+| 46         | Hugh      | O'Reilly  | None    | 3 Chatham Street                         | Dublin   | Dublin | Ireland  | None       | +353 01 6792424    | None | hughoreilly@apple.ie | 3            |
+| 57         | Luis      | Rojas     | None    | Calle Lira, 198                          | Santiago | None   | Chile    | None       | +56 (0)2 635 4444  | None | luisrojas@yahoo.cl   | 5            |
 
 #### 5. Which of the following cities indicate having 2 customers?
 
@@ -368,6 +420,20 @@ from customers
 group by city 
 order by no_of_cust desc;
 ```
+Note: only the first 10 records are displayed. 
+
+| City          | no_of_cust |
+|---------------|------------|
+| Berlin        |          2 |
+| London        |          2 |
+| Mountain View |          2 |
+| Paris         |          2 |
+| Prague        |          2 |
+| São Paulo     |          2 |
+| Amsterdam     |          1 |
+| Bangalore     |          1 |
+| Bordeaux      |          1 |
+| Boston        |          1 |
 
 #### 6. Create a new customer invoice id by combining a customer’s invoice id with their first and last name while ordering your query in the following order: firstname, lastname, and invoiceID.
 
@@ -382,3 +448,17 @@ JOIN
     invoices ON invoices.customerid = customers.customerid
 order by newcustinvoiceid;
 ```
+Note: only the first 10 records have been displayed. 
+
+| InvoiceId | CustomerId | newcustinvoiceid  |
+|-----------|------------|-------------------|
+|       116 |         32 | AaronMitchell116  |
+|       245 |         32 | AaronMitchell245  |
+|       268 |         32 | AaronMitchell268  |
+|       290 |         32 | AaronMitchell290  |
+|       342 |         32 | AaronMitchell342  |
+|        50 |         32 | AaronMitchell50   |
+|        61 |         32 | AaronMitchell61   |
+|       123 |         11 | AlexandreRocha123 |
+|       252 |         11 | AlexandreRocha252 |
+|       275 |         11 | AlexandreRocha275 |
