@@ -210,7 +210,8 @@ from employees;
 
 #### 3. Show a list of employees who have worked for the company for 15 or more years using the current date function. Sort by lastname ascending.
 
-```SELECT SQL
+```SQL
+SELECT
     employeeid,
     firstname,
     lastname,
@@ -224,8 +225,10 @@ ORDER BY
 
 #### 4. Profiling the Customers table, answer the following question. Are there any columns with null values?
 
-`select * from customers
-where postalcode is null;`
+``` SQL
+select * from customers
+where postalcode is null;
+```
 
 #### 5. Which of the following cities indicate having 2 customers?
 
