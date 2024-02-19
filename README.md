@@ -5,7 +5,9 @@
 
 ![Chinook Schema](https://ucde-rey.s3.amazonaws.com/DSV1015/ChinookDatabaseSchema.png)
 
-## Part one: Basic SQL Syntax
+Note: I have limited all results to the first 5 lines 
+
+## Part one: Selecting and retrieving data with SQL
 
 #### 1. Retrieve all the records from the Employees table.
 
@@ -62,6 +64,11 @@ from tracks
 where milliseconds >= '5000000';
 ```
 
+| TrackId | Milliseconds |
+|---------|--------------|
+| 2820    | 5286953      |
+| 3224    | 5088838      |
+
 #### 2. Find all the invoices whose total is between $5 and $15 dollars.
 
 ``` SQL
@@ -69,6 +76,19 @@ select invoiceid, total
 from invoices
 where total between '5' and '15';
 ```
+
+| InvoiceId | Total |
+|-----------|-------|
+| 3         | 5.94  |
+| 4         | 8.91  |
+| 5         | 13.86 |
+| 10        | 5.94  |
+| 11        | 8.91  |
+| 12        | 13.86 |
+| 17        | 5.94  |
+| 18        | 8.91  |
+| 19        | 13.86 |
+| 24        | 5.94  |
 
 #### 3. Find all the customers from the following States: RJ, DF, AB, BC, CA, WA, NY.
 
@@ -78,6 +98,18 @@ from customers
 where state in ('RJ','DF','AB','BC','CA','WA','NY');
 ```
 
+| CustomerId | State | FirstName | LastName | Company               |
+|------------|-------|-----------|----------|-----------------------|
+| 12         | RJ    | Roberto   | Almeida  | Riotur                |
+| 13         | DF    | Fernanda  | Ramos    | None                  |
+| 14         | AB    | Mark      | Philips  | Telus                 |
+| 15         | BC    | Jennifer  | Peterson | Rogers Canada         |
+| 16         | CA    | Frank     | Harris   | Google Inc.           |
+| 17         | WA    | Jack      | Smith    | Microsoft Corporation |
+| 18         | NY    | Michelle  | Brooks   | None                  |
+| 19         | CA    | Tim       | Goyer    | Apple Inc.            |
+| 20         | CA    | Dan       | Miller   | None                  |
+
 #### 4. Find all the invoices for customer 56 and 58 where the total was between $1.00 and $5.00.
 
 ``` SQL
@@ -85,6 +117,16 @@ select total, customerid, invoiceid, invoicedate
 from invoices
 where customerid in ('56','58')and (total between 1 and 5);
 ```
+
+| Total | CustomerId | InvoiceId | InvoiceDate         |
+|-------|------------|-----------|---------------------|
+| 1.98  | 56         | 119       | 2010-06-12 00:00:00 |
+| 3.96  | 56         | 142       | 2010-09-14 00:00:00 |
+| 1.98  | 56         | 337       | 2013-01-28 00:00:00 |
+| 1.98  | 58         | 120       | 2010-06-12 00:00:00 |
+| 1.98  | 58         | 315       | 2012-10-27 00:00:00 |
+| 3.96  | 58         | 338       | 2013-01-29 00:00:00 |
+| 1.99  | 58         | 412       | 2013-12-22 00:00:00 |
 
 #### 5. Find all the tracks whose name starts with 'All'.
 
@@ -94,6 +136,24 @@ from tracks
 where name like 'all%';
 ```
 
+| Name                                   | TrackId |
+|----------------------------------------|---------|
+| All I Really Want                      | 38      |
+| All For You                            | 134     |
+| All Star                               | 385     |
+| All My Life                            | 1009    |
+| All My Love                            | 1608    |
+| All Within My Hands                    | 1892    |
+| All or None                            | 2192    |
+| All Dead, All Dead                     | 2274    |
+| All the Best Cowboys Have Daddy Issues | 2888    |
+| All Because Of You                     | 2969    |
+| All Along The Watchtower               | 2991    |
+| All I Want Is You                      | 3003    |
+| All I Want Is You                      | 3017    |
+| All My Love                            | 3316    |
+| All Night Thing                        | 3374    |
+
 #### 6. Find all the customer emails that start with "J" and are from gmail.com.
 
 ``` SQL
@@ -101,6 +161,10 @@ select *
 from customers
 where email like 'j%@gmail.com';
 ```
+
+| CustomerId | FirstName | LastName | Company | Address     | City           | State | Country | PostalCode | Phone             | Fax  | Email               | SupportRepId |
+|------------|-----------|----------|---------|-------------|----------------|-------|---------|------------|-------------------|------|---------------------|--------------|
+| 28         | Julia     | Barnett  | None    | 302 S 700 E | Salt Lake City | UT    | USA     | 84102      | +1 (801) 531-7272 | None | jubarnett@gmail.com | 5            |
 
 #### 7. Find all the invoices from the billing city Brasília, Edmonton, and Vancouver and sort in descending order by invoice ID.
 
@@ -111,6 +175,23 @@ where billingcity in ('Brasilia', 'Edmonton', 'Vancouver')
 ORDER BY invoiceid desc;
 ```
 
+| InvoiceId | CustomerId | InvoiceDate         | BillingAddress      | BillingCity | BillingState | BillingCountry | BillingPostalCode | Total |
+|-----------|------------|---------------------|---------------------|-------------|--------------|----------------|-------------------|-------|
+| 362       | 14         | 2013-05-11 00:00:00 | 8210 111 ST NW      | Edmonton    | AB           | Canada         | T6G 2C7           | 13.86 |
+| 351       | 14         | 2013-03-31 00:00:00 | 8210 111 ST NW      | Edmonton    | AB           | Canada         | T6G 2C7           | 1.98  |
+| 328       | 15         | 2012-12-15 00:00:00 | 700 W Pender Street | Vancouver   | BC           | Canada         | V6C 1G8           | 0.99  |
+| 276       | 15         | 2012-04-26 00:00:00 | 700 W Pender Street | Vancouver   | BC           | Canada         | V6C 1G8           | 5.94  |
+| 254       | 15         | 2012-01-23 00:00:00 | 700 W Pender Street | Vancouver   | BC           | Canada         | V6C 1G8           | 3.96  |
+| 231       | 15         | 2011-10-21 00:00:00 | 700 W Pender Street | Vancouver   | BC           | Canada         | V6C 1G8           | 1.98  |
+| 230       | 14         | 2011-10-08 00:00:00 | 8210 111 ST NW      | Edmonton    | AB           | Canada         | T6G 2C7           | 0.99  |
+| 178       | 14         | 2011-02-17 00:00:00 | 8210 111 ST NW      | Edmonton    | AB           | Canada         | T6G 2C7           | 5.94  |
+| 156       | 14         | 2010-11-15 00:00:00 | 8210 111 ST NW      | Edmonton    | AB           | Canada         | T6G 2C7           | 3.96  |
+| 133       | 14         | 2010-08-13 00:00:00 | 8210 111 ST NW      | Edmonton    | AB           | Canada         | T6G 2C7           | 1.98  |
+| 102       | 15         | 2010-03-16 00:00:00 | 700 W Pender Street | Vancouver   | BC           | Canada         | V6C 1G8           | 9.91  |
+| 47        | 15         | 2009-07-16 00:00:00 | 700 W Pender Street | Vancouver   | BC           | Canada         | V6C 1G8           | 13.86 |
+| 36        | 15         | 2009-06-05 00:00:00 | 700 W Pender Street | Vancouver   | BC           | Canada         | V6C 1G8           | 1.98  |
+| 4         | 14         | 2009-01-06 00:00:00 | 8210 111 ST NW      | Edmonton    | AB           | Canada         | T6G 2C7           | 8.91  |
+
 #### 8. Show the number of orders placed by each customer (hint: this is found in the invoices table) and sort the result by the number of orders in descending order.
 
 ``` SQL
@@ -120,6 +201,19 @@ from invoices
 GROUP BY customerid;
 ```
 
+| InvoiceId | CustomerId | InvoiceDate         | BillingAddress                       | BillingCity         | BillingState | BillingCountry | BillingPostalCode | Total | totalorders |
+|-----------|------------|---------------------|--------------------------------------|---------------------|--------------|----------------|-------------------|-------|-------------|
+| 382       | 1          | 2013-08-07 00:00:00 | Av. Brigadeiro Faria Lima, 2170      | São José dos Campos | SP           | Brazil         | 12227-000         | 8.91  | 7           |
+| 293       | 2          | 2012-07-13 00:00:00 | Theodor-Heuss-Straße 34              | Stuttgart           | None         | Germany        | 70174             | 0.99  | 7           |
+| 391       | 3          | 2013-09-20 00:00:00 | 1498 rue Bélanger                    | Montréal            | QC           | Canada         | H2G 1A7           | 0.99  | 7           |
+| 392       | 4          | 2013-10-03 00:00:00 | Ullevålsveien 14                     | Oslo                | None         | Norway         | 0171              | 1.98  | 7           |
+| 361       | 5          | 2013-05-06 00:00:00 | Klanova 9/506                        | Prague              | None         | Czech Republic | 14700             | 8.91  | 7           |
+| 404       | 6          | 2013-11-13 00:00:00 | Rilská 3174/6                        | Prague              | None         | Czech Republic | 14300             | 25.86 | 7           |
+| 370       | 7          | 2013-06-19 00:00:00 | Rotenturmstraße 4, 1010 Innere Stadt | Vienne              | None         | Austria        | 1010              | 0.99  | 7           |
+| 394       | 8          | 2013-10-04 00:00:00 | Grétrystraat 63                      | Brussels            | None         | Belgium        | 1000              | 3.96  | 7           |
+| 340       | 9          | 2013-02-02 00:00:00 | Sønder Boulevard 51                  | Copenhagen          | None         | Denmark        | 1720              | 8.91  | 7           |
+| 383       | 10         | 2013-08-12 00:00:00 | Rua Dr. Falcão Filho, 155            | São Paulo           | SP           | Brazil         | 01007-010         | 13.86 | 7           |
+
 #### 9. Find the albums with 12 or more tracks.
 
 ``` SQL
@@ -128,6 +222,14 @@ from tracks
 group by albumid
 having count (trackid) >= 12;
 ```
+
+| TrackId | Name                         | AlbumId | MediaTypeId | GenreId | Composer                          | Milliseconds |    Bytes | UnitPrice | totaltracks |
+|---------|------------------------------|---------|-------------|---------|----------------------------------|--------------|----------|-----------|-------------|
+| 37      | Livin' On The Edge           | 5       | 1           | 1       | Steven Tyler, Joe Perry, Mark Hudson | 381231     | 12374569 | 0.99      | 15          |
+| 50      | You Oughta Know (Alternate)  | 6       | 1           | 1       | Alanis Morissette & Glenn Ballard | 491885       | 16008629 | 0.99      | 13          |
+| 62      | Real Thing                   | 7       | 1           | 1       | Jerry Cantrell, Layne Staley      | 243879       | 7937731  | 0.99      | 12          |
+| 76      | Canta, Canta Mais            | 8       | 1           | 2       | None                             | 271856       | 8719426  | 0.99      | 14          |
+| 98      | The Last Remaining Light     | 10      | 1           | 1       | Audioslave/Chris Cornell        | 317492       | 7622615  | 0.99      | 14          |
 
 ## Part 3: Subqueries and Joins with SQL
 
