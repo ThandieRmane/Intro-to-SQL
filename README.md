@@ -5,8 +5,6 @@
 
 ![Chinook Schema](https://ucde-rey.s3.amazonaws.com/DSV1015/ChinookDatabaseSchema.png)
 
-Note: I have limited all results to the first 5 lines 
-
 ## Part one: Selecting and retrieving data with SQL
 
 #### 1. Retrieve all the records from the Employees table.
@@ -15,6 +13,8 @@ Note: I have limited all results to the first 5 lines
 Select *
 FROM employees;
 ```
+Note: table includes only the first 5 records have been displayed. 
+
 | EmployeeId | LastName | FirstName | Title               | ReportsTo | BirthDate           | HireDate            | Address                     | City       | State | Country | PostalCode | Phone             | Fax               | Email                    |
 |------------|----------|-----------|---------------------|-----------|---------------------|---------------------|-----------------------------|------------|-------|---------|------------|-------------------|-------------------|--------------------------|
 | 1          | Adams    | Andrew    | General Manager     | None      | 1962-02-18 00:00:00 | 2002-08-14 00:00:00 | 11120 Jasper Ave NW         | Edmonton   | AB    | Canada  | T5K 2N1    | +1 (780) 428-9482 | +1 (780) 428-3457 | andrew@chinookcorp.com   |
@@ -29,6 +29,7 @@ FROM employees;
 SELECT Firstname, Lastname, Birthdate, Address, City, State
 FROM Employees;
 ```
+Note: only the first 5 records have been displayed.
 
 | FirstName | LastName | BirthDate           | Address                     | City       | State |
 |-----------|----------|---------------------|-----------------------------|------------|-------|
@@ -45,6 +46,7 @@ SELECT *
 FROM tracks
 LIMIT 20;
 ```
+Note: only the first 5 records have been displayed.
 
 | TrackId | Name                                    | AlbumId | MediaTypeId | GenreId | Composer                                                               | Milliseconds | Bytes    | UnitPrice |
 |---------|-----------------------------------------|---------|-------------|---------|------------------------------------------------------------------------|--------------|----------|-----------|
@@ -117,6 +119,7 @@ select total, customerid, invoiceid, invoicedate
 from invoices
 where customerid in ('56','58')and (total between 1 and 5);
 ```
+Note: only the first 10 records are displayed. There were 168 records returned. 
 
 | Total | CustomerId | InvoiceId | InvoiceDate         |
 |-------|------------|-----------|---------------------|
@@ -200,6 +203,7 @@ count (customerid) as totalorders
 from invoices
 GROUP BY customerid;
 ```
+Note: only the first 10 records have been displayed. 
 
 | InvoiceId | CustomerId | InvoiceDate         | BillingAddress                       | BillingCity         | BillingState | BillingCountry | BillingPostalCode | Total | totalorders |
 |-----------|------------|---------------------|--------------------------------------|---------------------|--------------|----------------|-------------------|-------|-------------|
@@ -222,6 +226,7 @@ from tracks
 group by albumid
 having count (trackid) >= 12;
 ```
+Note: only the first 10 records have been displayed. There were over 158 records returned. 
 
 | TrackId | Name                         | AlbumId | MediaTypeId | GenreId | Composer                          | Milliseconds |    Bytes | UnitPrice | totaltracks |
 |---------|------------------------------|---------|-------------|---------|----------------------------------|--------------|----------|-----------|-------------|
