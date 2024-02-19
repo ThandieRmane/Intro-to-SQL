@@ -10,17 +10,21 @@
 #### Retrieve all the records from the Employees table.
 
 `Select *
+
 FROM employees;`
 
 #### Retrieve the FirstName, LastName, Birthdate, Address, City, and State from the Employees table.
 
 `SELECT Firstname, Lastname, Birthdate, Address, City, State
+
 FROM Employees`
 
 #### Retrieve all the columns from the Tracks table, but only return 20 rows.
 
 `SELECT *
+
 FROM tracks
+
 LIMIT 20`
 
 ## Part 2
