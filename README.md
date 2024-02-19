@@ -29,7 +29,7 @@ FROM tracks
 LIMIT 20;
 ```
 
-## Part 2
+## Part 2: Filtering, Sorting and Calculating Data with SQL
 
 #### 1. Find all the tracks that have a length of 5,000,000 milliseconds or more.
 
@@ -106,7 +106,7 @@ group by albumid
 having count (trackid) >= 12;
 ```
 
-## Part 3
+## Part 3: Subqueries and Joins with SQL
 
 #### 1. Using a subquery, find the names of all the tracks for the album "Californication".
 
@@ -187,7 +187,7 @@ from invoices
 join customers on customers.customerid = invoices.customerid;
 ```
 
-## Part 4
+## Part 4: Modyfying and Analyzing Data with SQL
 
 #### 1. Pull a list of customer ids with the customer’s full name, and address, along with combining their city and country together. Be sure to make a space in between these two and make it UPPER CASE. (e.g. LOS ANGELES USA)
 
