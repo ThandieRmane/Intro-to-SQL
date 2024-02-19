@@ -9,8 +9,9 @@
 
 #### 1. Retrieve all the records from the Employees table.
 
-`Select *
-FROM employees;`
+``` SQL
+Select *
+FROM employees;```
 
 #### 2. Retrieve the FirstName, LastName, Birthdate, Address, City, and State from the Employees table.
 
