@@ -15,33 +15,72 @@ FROM employees;`
 #### Retrieve the FirstName, LastName, Birthdate, Address, City, and State from the Employees table.
 
 `SELECT Firstname, Lastname, Birthdate, Address, City, State
-FROM Employees`
+FROM Employees;`
 
 #### Retrieve all the columns from the Tracks table, but only return 20 rows.
 
 `SELECT *
 FROM tracks
-LIMIT 20`
+LIMIT 20;`
 
 ## Part 2
 
 #### Find all the tracks that have a length of 5,000,000 milliseconds or more.
 
+`select trackid,milliseconds
+from tracks
+where milliseconds >= '5000000';`
+
 #### Find all the invoices whose total is between $5 and $15 dollars.
+
+`select invoiceid, total
+from invoices
+where total between '5' and '15';`
 
 #### Find all the customers from the following States: RJ, DF, AB, BC, CA, WA, NY.
 
+`select customerid, state, firstname,lastname,company
+from customers
+where state in ('RJ','DF','AB','BC','CA','WA','NY');`
+
 #### Find all the invoices for customer 56 and 58 where the total was between $1.00 and $5.00.
+
+`select total, customerid, invoiceid, invoicedate
+from invoices
+where customerid in ('56','58')and (total between 1 and 5);`
 
 #### Find all the tracks whose name starts with 'All'.
 
+`select Name, trackid
+from tracks
+where name like 'all%';`
+
 #### Find all the customer emails that start with "J" and are from gmail.com.
+
+`select *
+from customers
+where email like 'j%@gmail.com';`
 
 #### Find all the invoices from the billing city Brasília, Edmonton, and Vancouver and sort in descending order by invoice ID.
 
+`select *
+from invoices
+where billingcity in ('Brasilia', 'Edmonton', 'Vancouver')
+ORDER BY invoiceid desc;`
+
 #### Show the number of orders placed by each customer (hint: this is found in the invoices table) and sort the result by the number of orders in descending order.
 
+`select *,
+count (customerid) as totalorders
+from invoices
+GROUP BY customerid;`
+
 #### Find the albums with 12 or more tracks.
+
+`Select *, COUNT (trackid) as totaltracks
+from tracks 
+group by albumid
+having count (trackid) >= 12;`
 
 ## Part 3
 
