@@ -241,7 +241,7 @@ order by no_of_cust desc;
 
 #### 6. Create a new customer invoice id by combining a customer’s invoice id with their first and last name while ordering your query in the following order: firstname, lastname, and invoiceID.
 
-```
+``` SQL
 SELECT
     invoices.invoiceid,
     customers.customerid,
